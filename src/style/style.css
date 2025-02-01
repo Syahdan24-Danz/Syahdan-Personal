@@ -1,0 +1,109 @@
+@import "tailwindcss";
+
+.cursor {
+  position: absolute;
+  width: 500px;
+  height: 500px; /* Ukuran yang realistis untuk kursor */ /* Ukuran yang realistis untuk kursor */
+  border-radius: 50%; /* Bentuk lingkaran */
+  background-color: rgba(
+    0,
+    128,
+    255,
+    0.6
+  ); /* Warna kursor biru dengan transparansi */
+  z-index: 1000; /* Menempatkan kursor di atas elemen lainnya */
+  pointer-events: none; /* Agar kursor tidak menghalangi interaksi dengan elemen lain */
+  transition: transform 0.1s ease-out, background-color 0.3s ease; /* Animasi posisi dan warna */
+  opacity: 0.3;
+}
+
+@layer components {
+  .flex-cols {
+    @apply flex flex-col;
+  }
+
+  .flex-rows {
+    @apply flex flex-row;
+  }
+
+  .center {
+    @apply flex justify-center items-center;
+  }
+
+  .bg-tools {
+    background-color: rgba(99, 183, 82, 0.4);
+    @apply px-4 py-2 rounded-full text-[0.8rem] font-bold;
+  }
+
+  .hide-scrollbar {
+    @apply overflow-y-scroll;
+  }
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .hide-scrollbar {
+    scrollbar-width: none;
+  }
+
+  .headline-resume {
+    @apply text-[1.5rem] font-bold mb-2;
+  }
+  .headline-point {
+    @apply font-bold text-[1.25rem];
+  }
+
+  .resume-item-tahun {
+    @apply font-semibold text-[1rem] opacity-60;
+  }
+  .resume-items {
+    @apply flex flex-row gap-4 p-4;
+  }
+  .resume-items-active {
+    @apply isolate rounded-xl bg-white/20 shadow-lg ring-1 ring-black/5 transform transition  duration-300 ease-in-out;
+    & .headline-point {
+      @apply text-[#63b752];
+    }
+    & .resume-item-tahun {
+      opacity: 1;
+    }
+  }
+  .resume-item-unactive {
+    @apply opacity-40;
+  }
+  .sosmed > ul > li > a > img {
+    @apply w-8;
+  }
+
+  .btn {
+    @apply rounded-full text-[0.8rem] font-bold relative opacity-60 transform transition  duration-300 ease-in-out block flex flex-row items-center;
+  }
+  .btn::after {
+    content: "";
+    transform: translate(10%);
+    width: 25%;
+    height: 2px;
+    background-color: white;
+  }
+
+  .btn:hover {
+    @apply text-[#63b752] opacity-100;
+  }
+  .btn-active {
+    @apply scale-105 px-4 py-2 transform transition  duration-300 ease-in-out opacity-100;
+  }
+  .btn-active:hover {
+    @apply text-white;
+  }
+
+  .study-items:hover {
+    @apply isolate rounded-xl bg-white/20 shadow-lg ring-1 ring-black/5 transform transition  duration-300 ease-in-out;
+    & .headline-point {
+      @apply text-[#63b752];
+    }
+  }
+
+  .tools-img {
+    @apply w-24;
+  }
+}
