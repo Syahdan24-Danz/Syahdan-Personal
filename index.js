@@ -32,7 +32,6 @@ const dataResume = [
     tools: ["GDocs"],
   },
 ];
-const body = document.querySelector("body");
 const cursor = document.querySelector(".cursor");
 const aboutMe = document.querySelector(".about-me");
 const viewAbout = document.getElementById("about-me");
@@ -40,22 +39,6 @@ const viewAbout = document.getElementById("about-me");
 // Resume
 const resumeContainer = document.querySelector(".resume-content");
 
-
-class Body {
-  constructor() {
-    this.body = body;
-  }
-  hoverItems(items, css) {
-    items.forEach((item) => {
-      item.addEventListener("mouseover", () => {
-        item.classList.add(css);
-      });
-      item.addEventListener("mouseout", () => {
-        item.classList.remove(css);
-      });
-    });
-  }
-}
 class Resume {
   constructor(item) {
     const { company, position, tahun, deskripsi, tools } = item;
@@ -126,46 +109,30 @@ dataResume.forEach((item) => {
 const itemsResume = document.querySelectorAll(".resume-items");
 Resume.hoverItems(itemsResume, "resume-items-active", "resume-item-unactive");
 
-
+// btn OBJECT
 const btnAbout = document.querySelector(".btn-about");
-const btnResume = document.querySelector(".btn-resume");
-const btnStudy = document.querySelector(".btn-study");
-const btnExperience = document.querySelector(".btn-experience");
-const btnProject = document.querySelector(".btn-project");
-const btnTools = document.querySelector(".btn-tools");
-
 const btnAll = document.querySelectorAll(".btn");
 
 class ButtonNavbar {
   constructor() {
-    this.buttonNow = this.buttonNow;
+    this.button = btnAll;
+    this.activeButtonClass = "btn-active";
   }
-
-  hoverItems(items, css) {
-    items.forEach((item) => {
-      item.addEventListener("mouseover", () => {
-        item.classList.add(css);
-      });
-      item.addEventListener("mouseout", () => {
-        item.classList.remove(css);
-      });
-    });
-  }
-  activeButton(items, css) {
+  activeButton() {
     let itemNow = btnAbout;
-    itemNow.classList.add(css);
-    items.forEach((item) => {
+    itemNow.classList.add(this.activeButtonClass);
+    this.button.forEach((item) => {
       item.addEventListener("click", (e) => {
         e.preventDefault();
         const targetElement = e.target.getAttribute("href");
         const viewScroll = document.querySelector(targetElement);
         console.log(viewScroll);
         viewScroll.scrollIntoView({ behavior: "smooth", block: "start" });
-        items.forEach((otherItem) => {
-          otherItem.classList.remove(css);
+        this.button.forEach((otherItem) => {
+          otherItem.classList.remove(this.activeButtonClass);
         });
         itemNow = item;
-        itemNow.classList.add(css);
+        itemNow.classList.add(this.activeButtonClass);
 
         console.log(itemNow);
       });
@@ -174,10 +141,18 @@ class ButtonNavbar {
 }
 
 const buttonNavbarInstance = new ButtonNavbar();
+buttonNavbarInstance.activeButton();
 
-buttonNavbarInstance.activeButton(btnAll, "btn-active");
 
-let previousCursor = null;
+class DarkMode {
+  constructor() {
+    this.darkMode = document.querySelector(".dark-mode");
+    this.darkMode.addEventListener("click", () => {
+      document.body.classList.toggle("dark");
+    });
+  }
+}
+// let previousCursor = null;
 
 // document.addEventListener("mousemove", function (event) {
 //   if (previousCursor !== null) {
