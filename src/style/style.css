@@ -18,6 +18,9 @@
 }
 
 @layer components {
+  body {
+    @apply bg-[#2a323c];
+  }
   .flex-cols {
     @apply flex flex-col;
   }
